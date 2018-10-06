@@ -13,7 +13,7 @@ import Test.Unit.Main (runTest)
 main :: Effect Unit
 main = runTest do
   test "sample" do
-    Assert.equal (show sample) sampleAsString
+    Assert.equal sampleAsString (show sample)
   suite "Show *" do
     let
       p1 = property "background-color"
@@ -26,13 +26,12 @@ main = runTest do
       r2 = ruleSet [s1] [d1]
       css1 = styleSheet [r1, r2]
     test "Show Declaration" do
-        Assert.equal (show d1) "background-color: red !important;"
-        Assert.equal (show d2) "font-size: 10px;"
+        Assert.equal "background-color: red !important;" (show d1)
+        Assert.equal "font-size: 10px;" (show d2)
     test "Show Property" do
-        Assert.equal (show p1) "background-color"
+        Assert.equal "background-color" (show p1)
     test "Show RuleSet" do
         Assert.equal
-          (show r1)
           (intercalate
             "\n"
             [ "html, h1"
@@ -41,11 +40,11 @@ main = runTest do
             , "  font-size: 10px;"
             , "}"
             ])
+          (show r1)
     test "Show Selector" do
-        Assert.equal (show s1) "html"
+        Assert.equal "html" (show s1)
     test "Show StyleSheet" do
         Assert.equal
-          (show css1)
           (intercalate
             "\n"
             [ "html, h1"
@@ -58,15 +57,16 @@ main = runTest do
             , "  background-color: red !important;"
             , "}"
             ])
+          (show css1)
   test "selectors" do
-    Assert.equal (show h1) "h1"
-    Assert.equal (show h2) "h2"
-    Assert.equal (show h3) "h3"
-    Assert.equal (show h4) "h4"
-    Assert.equal (show h5) "h5"
-    Assert.equal (show h6) "h6"
+    Assert.equal "h1" (show h1)
+    Assert.equal "h2" (show h2)
+    Assert.equal "h3" (show h3)
+    Assert.equal "h4" (show h4)
+    Assert.equal "h5" (show h5)
+    Assert.equal "h6" (show h6)
   test "properties" do
-    Assert.equal (show backgroundColor) "background-color"
-    Assert.equal (show display) "display"
-    Assert.equal (show fontSize) "font-size"
-    Assert.equal (show margin) "margin"
+    Assert.equal "background-color" (show backgroundColor)
+    Assert.equal "display" (show display)
+    Assert.equal "font-size" (show fontSize)
+    Assert.equal "margin" (show margin)
